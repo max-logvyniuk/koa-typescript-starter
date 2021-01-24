@@ -4,16 +4,17 @@
   "description": "A starter/seed for KOA2/TypeScript.",
   "main": "app.js",
   "scripts": {
-    "start": "npm run build && node ./dist/index.js",
-    "build": "npm run lint && node_modules/typescript/bin/tsc",
-    "watch": "nodemon --watch 'app/**/*' -e ts --exec 'ts-node' ./app/app.ts",
-    "lint": "node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --force",
+    "start": "yarn run build && node ./dist/index.js",
+    "build": "yarn run lint && node node_modules/typescript/bin/tsc",
+    "dev": "nodemon --watch 'app/**/*.ts' -e ts --exec ts-node ./app/app.ts",
+    "lint": "node node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --force",
     "fix": "node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --fix --force",
     "image:build": "docker build --tag koa-typescript-starter .",
     "image:run": "docker run --rm -ti -p 3000:3000 koa-typescript-starter",
     "test": "NODE_ENV=test node_modules/mocha/bin/mocha -r ts-node/register ./test/**/*.spec.ts && exit 0",
     "coverage": "NODE_ENV=test node_modules/nyc/bin/nyc.js --reporter=html --reporter=text node_modules/mocha/bin/mocha --exit -r ts-node/register ./test/**/*.spec.ts",
-    "coverage:coveralls": "NODE_ENV=test node_modules/nyc/bin/nyc.js --reporter=lcov --reporter=text-lcov node_modules/mocha/bin/mocha --exit -r ts-node/register ./test/**/*.spec.ts | coveralls"
+    "coverage:coveralls": "NODE_ENV=test node_modules/nyc/bin/nyc.js --reporter=lcov --reporter=text-lcov node_modules/mocha/bin/mocha --exit -r ts-node/register ./test/**/*.spec.ts | coveralls",
+    "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ormconfig.ts"
   },
   "repository": {
     "type": "git",
@@ -28,15 +29,27 @@
   "license": "ISC",
   "dependencies": {
     "@koa/cors": "^2.2.2",
+    "@types/node": "^14.14.16",
+    "babel-register": "^6.26.0",
+    "dotenv": "^8.2.0",
+    "fast-csv": "^4.3.6",
     "koa": "^2.5.2",
     "koa-body": "^2.6.0",
     "koa-bunyan-logger": "^2.0.0",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.3",
     "koa2-swagger-ui": "^2.9.5",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.20",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.3.5",
+    "sequelize-typescript": "^2.0.0-beta.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "typeorm": "^0.2.29"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/register": "^7.12.10",
     "@types/bunyan": "^1.8.4",
     "@types/chai": "^4.1.4",
     "@types/chai-http": "^3.0.5",
@@ -56,6 +69,7 @@
     "source-map-support": "^0.5.6",
     "ts-node": "^6.2.0",
     "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.0.1"
   },
   "nyc": {

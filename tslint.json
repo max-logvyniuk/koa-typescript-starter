@@ -1,12 +1,16 @@
 
-
 {
+  "extends": [
+    "tslint-config-airbnb",
+    "tslint-config-prettier"
+  ],
   "rules": {
     "class-name": true,
     "comment-format": [
       true,
       "check-space"
     ],
+    "import-name": false,
     "indent": [
       true,
       "spaces"
