@@ -3,4 +3,6 @@ package-lock.json
 /.nyc_output
 /coverage
 /dist
-/files
+#/files
+
+.env
