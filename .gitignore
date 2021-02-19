@@ -1,5 +1,9 @@
 node_modules
+.idea
+
 package-lock.json
+yarn-error.log
+
 /.nyc_output
 /coverage
 /dist
